@@ -1,0 +1,33 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #a0a0a0;
+}
+
+.link.active {
+  color: black;
+}
+
+
+.link:hover,
+.link:focus {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 375px) {}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .header {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}

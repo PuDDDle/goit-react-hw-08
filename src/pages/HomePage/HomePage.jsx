@@ -5,7 +5,6 @@ const HomePage = () => {
   return (
     <section className={`${s.home} container`}>
       <h1 className={s.title}>Welcome to the Contacts app</h1>
-      <p className={s.text}>Please register or log in to continue</p>
     </section>
   );
 };

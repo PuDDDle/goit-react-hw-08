@@ -1,34 +1,42 @@
 .userName {
   font-size: 18px;
   font-weight: 600;
+  color: #333;
+  margin-right: 20px;
 }
 
-button {
-  background-color: #1976d2;
+.button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #f44336;
   color: white;
-  padding: 8px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+  display: inline-block;
+  margin-left: 20px;
 }
 
-button:hover {
-  background-color: #1565c0;
+.button:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
 }
 
-@media (width < 475px) {
+.button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
   .userName {
-    font-size: 14px;
+    font-size: 16px;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 
-  button {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-}
-@media (width < 385px) {
-  .userName {
-    display: none;
+  .button {
+    width: 100%;
+    margin-left: 0;
   }
 }

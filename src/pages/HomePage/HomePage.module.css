@@ -1,35 +1,76 @@
 .home {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 80vh;
-  background-color: #fafafa;
-  padding: 20px;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff6f61, #ff8c00); /* Теплі кольори */
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 40px 20px;
+  overflow: hidden;
+  animation: backgroundAnimation 10s infinite alternate;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background: linear-gradient(135deg, #ff6f61, #ff8c00);
+  }
+  50% {
+    background: linear-gradient(135deg, #f7a1d7, #ffca56);
+  }
+  100% {
+    background: linear-gradient(135deg, #ff6f61, #ff8c00);
+  }
 }
 
 .title {
-  font-size: 36px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 64px; /* Великий шрифт для заголовка */
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: 2px;
+  animation: fadeIn 2s ease-out;
+  transition: transform 0.3s ease;
 }
 
-.text {
-  font-size: 18px;
-  color: #555;
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 30px;
+.title:hover {
+  transform: translateY(-10px); /* Легка анімація при наведенні */
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 28px;
-  }
-
-  .text {
-    font-size: 16px;
+    font-size: 36px;
+    letter-spacing: 1px;
   }
 }

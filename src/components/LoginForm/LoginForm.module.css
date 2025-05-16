@@ -2,82 +2,68 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
   max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgb(10 0 0);
-  margin-top: 50px;
-}
-
-.input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.input:focus {
-  border-color: #1976d2;
-}
-
-.wrong {
-  border-color: #d32f2f;
-}
-
-.error {
-  font-size: 12px;
-  color: #d32f2f;
-  margin-top: 5px;
-}
-
-.button {
-  padding: 12px 24px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #1976d2;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.button:hover:not(:disabled) {
-  background-color: #1565c0;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
-  background-color: #f5f5f5; /* Сірий фон для покращення контрасту */
-  min-height: 100vh; /* Задаємо висоту на весь екран */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
 }
 
-h1 {
+label {
+  font-weight: 500;
   color: #333;
+  font-size: 14px;
 }
 
-@media (max-width: 480px) {
-  .form {
-    padding: 15px;
-  }
+.input {
+  padding: 10px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s;
+}
 
-  .input {
-    font-size: 14px;
-  }
+.input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
 
-  .button {
-    font-size: 14px;
-  }
+.wrong {
+  border-color: #e53935 !important;
+  background-color: #fff7f7;
+}
+
+.error {
+  color: #e53935;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+  background-color: #357ab8;
 }

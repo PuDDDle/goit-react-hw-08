@@ -1,12 +1,12 @@
+import React from "react";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
-import DocumentTitle from '../../components/DocumentTitle';
-import { LoginForm } from '../../components/LoginForm/LoginForm';
-
-export default function LoginPage() {
+const LoginPage = () => {
   return (
-    <div>
-      <DocumentTitle>Login</DocumentTitle>
+    <section className="container">
       <LoginForm />
-    </div>
+    </section>
   );
-}
+};
+
+export default LoginPage;

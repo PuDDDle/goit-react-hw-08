@@ -1,93 +1,78 @@
-import axios from "axios";
+import { toast } from "react-hot-toast";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+axios.defaults.baseURL = "https://connections-api.goit.global/";
 
-// Utility to add JWT
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
 
-/*
- * POST @ /users/signup
- * body: { name, email, password }
- */
+const prepareAuth = (thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
+  if (!token) throw new Error("No token");
+  setAuthHeader(token);
+};
+
 export const register = createAsyncThunk(
   "auth/register",
-  async (credentials, thunkAPI) => {
+  async (credentials, thunkApi) => {
     try {
-      const res = await axios.post("/users/signup", credentials);
-      console.log("res");
-      // After successful registration, add the token to the HTTP header
-      setAuthHeader(res.data.token);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const response = await axios.post("/users/signup", credentials);
+      setAuthHeader(response.data.token);
+      toast.success("Registration successful!");
+      return response.data;
+    } catch (e) {
+      if (e.response && e.response.data && e.response.data.errors) {
+        toast.error("Registration error!");
+        return thunkApi.rejectWithValue(e.response.data.errors);
+      }
+      toast.error("Server error!");
+      return thunkApi.rejectWithValue({ general: "Server error" });
     }
   }
 );
 
-/*
- * POST @ /users/login
- * body: { email, password }
- */
-export const logIn = createAsyncThunk(
+export const login = createAsyncThunk(
   "auth/login",
-  async (credentials, thunkAPI) => {
+  async (credentials, thunkApi) => {
     try {
-      const res = await axios.post("/users/login", credentials);
-      // After successful login, add the token to the HTTP header
-      setAuthHeader(res.data.token);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const response = await axios.post("/users/login", credentials);
+      setAuthHeader(response.data.token);
+      toast.success("Login successful!");
+      return response.data;
+    } catch (e) {
+      toast.error("Login error!");
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
 
-/*
- * POST @ /users/logout
- * headers: Authorization: Bearer token
- */
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   try {
     await axios.post("/users/logout");
-    // After a successful logout, remove the token from the HTTP header
     clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toast.success("Logged out successfully!");
+  } catch (e) {
+    toast.error("Logout error!");
+    return thunkApi.rejectWithValue(e.message);
   }
 });
 
-/*
- * GET @ /users/me
- * headers: Authorization: Bearer token
- */
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    // Reading the token from the state via getState()
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
     try {
-      // If there is a token, add it to the HTTP header and perform the request
-      setAuthHeader(persistedToken);
-      const res = await axios.get("/users/current");
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      prepareAuth(thunkAPI);
+      const response = await axios.get("/users/current");
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
-  },
-  {
-    condition(_, thunkAPI) {
-      const state = thunkAPI.getState();
-      return state.auth.token !== null;
-    },
   }
 );

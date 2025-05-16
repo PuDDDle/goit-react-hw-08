@@ -1,17 +1,16 @@
 .link {
-  display: inline-block;
   text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  /* color: #2a363b; */
-  color: black;
-
-}
-
-.link.active {
-  color: #e84a5f;
+  color: #1976d2;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .link:hover {
-  transform: scale(1.1);
+  color: #388e3c;
+}
+
+@media (width < 475px) {
+  .link {
+    font-size: 16px;
+  }
 }

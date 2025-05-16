@@ -1,35 +1,26 @@
+import React, { useId } from "react";
+import s from "./SearchBox.module.css";
 import { useDispatch } from "react-redux";
-import { changeFilter } from "../../redux/filters/slice";
-import css from "./SearchBox.module.css";
-import { useState } from "react";
+import { changeFilter } from "../../redux/filters/filtersSlice";
 
 const SearchBox = () => {
-  const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
+  const filterId = useId();
+  const dispath = useDispatch();
 
-  const handleInputChange = (e) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    dispatch(changeFilter(newValue));
-  };
-
-  const resetFilter = () => {
-    setInputValue("");
-    dispatch(changeFilter(""));
+  const onFilter = (filter) => {
+    dispath(changeFilter(filter));
   };
 
   return (
-    <div className={css.contact}>
+    <div className={s.form}>
+      <label htmlFor={filterId}>Find contacts by name or phome</label>
       <input
-        className={css.input}
+        className={s.input}
         type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Find contacts by name/number"
+        name="filter"
+        id="filterId"
+        onChange={(e) => onFilter(e.target.value)}
       />
-      <button className={css.btn} onClick={resetFilter}>
-        Reset
-      </button>
     </div>
   );
 };

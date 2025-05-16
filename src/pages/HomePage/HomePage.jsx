@@ -1,16 +1,13 @@
-import DocumentTitle from "../../components/DocumentTitle";
-import css from "./HomePage.module.css";
+import React from "react";
+import s from "./HomePage.module.css";
 
-const styles = {};
-
-export default function HomePage() {
+const HomePage = () => {
   return (
-    <>
-      <DocumentTitle>Home</DocumentTitle>
-
-      <div className={css.container}>
-        <h1 className={css.title}>Phonebook</h1>
-      </div>
-    </>
+    <section className={`${s.home} container`}>
+      <h1 className={s.title}>Welcome to the Contacts app</h1>
+      <p className={s.text}>Please register or log in to continue</p>
+    </section>
   );
-}
+};
+
+export default HomePage;

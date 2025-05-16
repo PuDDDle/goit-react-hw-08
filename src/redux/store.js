@@ -1,12 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-import { contactsReducer } from "./contacts/slice";
-import { filtersReducer } from "./filters/slice";
-import { authReducer } from "./auth/slice";
-
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -14,20 +9,24 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
-// Persisting token field from auth slice to localstorage
+import contactsReducer from "./contacts/contactsSlice";
+import filtersReducer from "./filters/filtersSlice";
+import authReducer from "./auth/authSlice";
+
 const authPersistConfig = {
-  key: "auth", // Ключ кореневого об'єкта, в якому будуть зберігатися дані
-  storage: storage,
+  key: "auth",
+  storage,
   whitelist: ["token"],
 };
 
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
     filters: filtersReducer,
+    auth: persistedAuthReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

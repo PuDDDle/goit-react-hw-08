@@ -1,95 +1,53 @@
-form.submitForm {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 20px;
-  /* width: 374px;
-  height: 220px; */
-  font-family: inherit;
-}
-
-.submitForm {
+.form {
+  padding: 2rem;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
-  width: 350px;
-  border: 2px solid black;
+  gap: 1.7rem;
   border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
-  /* 
-  padding: 10px; */
+  @media (width > 620px) {
+    max-width: 300px;
+  }
 }
 
-/* 
-input:-internal-autofill-selected {
-  background-color: rgba(77, 69, 123, 0.7);
-}
-input.userName:hover {
-  background-color: rgba(48, 15, 235, 0.7);
-  
-} */
-
-.userLabel,
-.numberLabel {
-  font-size: 15px;
-  -webkit-text-stroke-width: 0.5px;
-  /* Товщина бордеру літери */
-  -webkit-text-stroke-color: black;
-  /* Колір бордеру літери */
-}
-
-input.userName,
-input.numberName {
-  border: 1px solid black;
+.input {
+  padding: 0.5rem;
   border-radius: 4px;
-  padding: 5px 10px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-input.userName:hover,
-input.userName:focus,
-input.numberName:hover,
-input.numberName:focus {
-  background-color: white;
-  outline: 1px solid black;
+.input:focus {
+  outline: none;
+  border-color: #1976d2;
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 16px;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 8px;
-  background-color: rgba(233, 233, 233, 0.7);
-
+.button {
+  background-color: #1976d2;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover {
-  border-color: #ffffff;
-  box-shadow: 2px 4px 8px rgba(77, 69, 123, 0.7);
-  background-color: #ffffff;
-
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
+.button:hover {
+  background-color: #1565c0;
+}
 
 .error {
-  color: rgb(255, 0, 0);
-  font-size: small;
-}
-
-
-.numberLabel {
-  margin-top: 10px;
-}
-
-.userName,
-.numberName {
-  padding: 5px 10px;
-  font-size: 14px;
+  color: red;
+  font-size: 0.9rem;
 }
